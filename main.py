@@ -65,7 +65,7 @@ def send_to_blogger(content):
     msg = EmailMessage()
     msg['Subject'] = subject
     msg['From'] = os.getenv("SENDER_EMAIL")
-    msg['To'] = "familytvr11.eslammosde@blogger.com" # الإيميل الصحيح
+    msg['To'] = "eslammosde.tech5@blogger.com" # الإيميل الصحيح
     msg.set_content(content, subtype='html')
 
     try:
