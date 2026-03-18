@@ -50,8 +50,7 @@ def generate_tech_content(title):
     7. Formatting: Use strictly clean HTML tags (p, h2, ul, li, table).
 
   Target Audience: USA & Europe. 
-  Tone: Energetic, Professional, and Tech-savvy.
-    """
+  Tone: Energetic, Professional, and Tech-savvy."""
 
     data = {
         "model": "llama-3.3-70b-versatile",
