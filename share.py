@@ -31,7 +31,7 @@ def post_to_bsky(title, link):
             # بناء النص مع الهاشتاجات كـ Facets لتكون قابلة للنقر
             tb = client_utils.TextBuilder()
             tb.text(f"🚨 {title}\n\n")
-            tb.tag("#RealEstate", "RealEstate") # هاشتاج أزرق
+            tb.tag("#tech", "tech") # هاشتاج أزرق
             tb.text(" ")
             tb.tag("#Economy", "Economy") # هاشتاج أزرق
             tb.text("\n\nRead the full report on our blog!")
@@ -43,7 +43,7 @@ def post_to_bsky(title, link):
                     external=models.AppBskyEmbedExternal.External(
                         uri=link,
                         title=title,
-                        description="Latest US Real Estate & Economy Updates 2026"
+                        description="Latest US tech  Updates 2026"
                     )
                 )
             )
