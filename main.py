@@ -34,7 +34,8 @@ def generate_tech_content(title):
         print(f"Error generating content: {e}")
         return f"<h1>{title}</h1><p>Check out our latest post on the blog!</p>"
     # برومبت احترافي يركز على الـ SEO والزرار
-   prompt = f"""
+   prompt = 
+    f"""
       You are an expert Content Creator in Tech and Entertainment. 
         Write a viral, SEO-optimized blog post in HTML format about this topic: "{title}".
 
@@ -50,7 +51,7 @@ def generate_tech_content(title):
 
   Target Audience: USA & Europe. 
   Tone: Energetic, Professional, and Tech-savvy.
-"""
+    """
 
     data = {
         "model": "llama-3.3-70b-versatile",
