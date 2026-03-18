@@ -8,20 +8,18 @@ from email.message import EmailMessage
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 
-# قائمة تطبيقاتك (تأكد من إضافة الـ 20 تطبيق هنا)
+# قائمة تطبيقاتك الـ 20 (سيختار البوت واحداً عشوائياً لكل مقال)
 APPS = [
     {"name": "Injury Lawyer Guide", "url": "https://play.google.com/store/apps/details?id=injurylawyerguide.aplizrc"},
-    {"name": "Smart IPTV Player", "url": "https://play.google.com/store/apps/details?id=asd.iptvplayer"},
     {"name": "Design AI 2", "url": "https://play.google.com/store/apps/details?id=design.ai2"},
-    # أضف بقية التطبيقات بنفس الشكل...
+    {"name": "Smart IPTV Player", "url": "https://play.google.com/store/apps/details?id=asd.iptvplayer"},
+    {"name": "Insurance App Guide", "url": "https://play.google.com/store/apps/details?id=insurance.aplicnem"}
 ]
 
 def generate_pro_article():
-    # 1. اختيار تطبيق عشوائي للترويج له في هذا المقال
+    # اختيار تطبيق عشوائي وعنوان تقني
     selected_app = random.choice(APPS)
-    
-    # 2. اختيار عنوان تقني/ترفيهي
-    topics = ["Best Streaming Apps 2026", "Top Tech Gadgets", "Future of Mobile Innovation", "Viral Entertainment Trends"]
+    topics = ["Streaming Trends 2026", "Next-Gen AI Gadgets", "Entertainment Tech Evolution"]
     title = random.choice(topics)
     
     headers = {
@@ -29,22 +27,21 @@ def generate_pro_article():
         "Content-Type": "application/json"
     }
 
-    # 3. البرومبت مع دمج بيانات التطبيق المختار
+    # البرومبت الاحترافي مع دمج ترويج التطبيق
     prompt = f"""Write a viral, SEO-optimized blog post in HTML about: "{title}".
-    
     STRICT INSTRUCTIONS:
-    1. Viral H1 Title with #Tech #Entertainment.
-    2. 150-char SEO Meta Description.
+    1. Viral H1 Title with #Tech #Streaming.
+    2. 150-char SEO Meta Description at the start.
     3. 5+ sections with <h2> tags.
-    4. HTML Data Table for Gold/Silver/Currency rates.
-    5. PROMOTION: You MUST include this EXACT promotion box in the middle of the article:
-       <div style='background: #f8f9fa; border: 2px solid #28a745; padding: 20px; text-align: center; border-radius: 10px; margin: 20px 0;'>
-          <h3>🚀 Featured App of the Day</h3>
-          <p>Looking for the best experience? Download <b>{selected_app['name']}</b> now!</p>
-          <a href='{selected_app['url']}' style='background-color: #28a745; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Install {selected_app['name']} from Play Store</a>
+    4. HTML Data Table for Gold, Silver, and Currency (USD/EUR).
+    5. PROMOTION: Include this exact box in the middle of content:
+       <div style='background: #f0fdf4; border: 2px solid #16a34a; padding: 20px; text-align: center; border-radius: 10px; margin: 20px 0;'>
+          <h3>🚀 Recommendation: {selected_app['name']}</h3>
+          <p>Experience the best in tech. Download our official app now!</p>
+          <a href='{selected_app['url']}' style='background-color: #16a34a; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Install from Play Store</a>
        </div>
-    6. Footer: Add a bold warning about downloading only from official sources.
-    7. Formatting: Clean HTML."""
+    6. Footer: Bold warning about official downloads.
+    7. Clean HTML format."""
 
     data = {
         "model": "llama-3.3-70b-versatile",
@@ -59,4 +56,28 @@ def generate_pro_article():
         print(f"Error: {e}")
         return None
 
-# دالة الإرسال تبقى كما هي (send_to_blogger)
+def send_to_blogger(content):
+    if not content: return
+
+    title_match = re.search('<h1>(.*?)</h1>', content)
+    subject = title_match.group(1) if title_match else f"Tech News {random.randint(100, 999)}"
+
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = os.getenv("SENDER_EMAIL")
+    # تم تحديث الإيميل هنا بناءً على الصورة الصحيحة
+    msg['To'] = "familytvr11.eslammosde@blogger.com" 
+    msg.set_content(content, subtype='html')
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(os.getenv("SENDER_EMAIL"), os.getenv("SENDER_PASSWORD"))
+            smtp.send_message(msg)
+        print(f"✅ Article Published Successfully!")
+    except Exception as e:
+        print(f"❌ Email Error: {e}")
+
+if __name__ == "__main__":
+    article = generate_pro_article()
+    if article:
+        send_to_blogger(article)
