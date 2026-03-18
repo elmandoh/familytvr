@@ -2,7 +2,7 @@ name: Auto Post to Blogger
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # النشر التلقائي كل 4 ساعات
+    - cron: '0 */2 * * *'  
   workflow_dispatch:        # السطر ده هو اللي بيرجع زرار الـ Run اليدوي
 jobs:
   build:
