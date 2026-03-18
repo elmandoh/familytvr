@@ -33,7 +33,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests atproto
-
+      - name: Install dependencies
+        run: |
+            pip install requests atproto groq
       - name: Run Share Script (Only if new post exists)
         env:
           BSKY_HANDLE_1: ${{ secrets.BSKY_HANDLE_1 }}
