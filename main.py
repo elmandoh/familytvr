@@ -20,25 +20,37 @@ APPS = [
 # كلمات مفتاحية قوية لرفع الـ SEO في أمريكا
 KEYWORDS = ["US Housing Market 2026", "Gold Price Prediction", "Best Stocks to Buy", "Passive Income USA", "Luxury Real Estate Trends"]
 
-def generate_pro_article():
-    app = random.choice(APPS)
-    kw = random.sample(KEYWORDS, 2) # اختيار كلمتين بحث عشوائيتين
-    
-    headers = {"Authorization": f"Bearer {GROQ_KEY}", "Content-Type": "application/json"}
-    
+def generate_tech_content(title):
+    try:
+        completion = client.chat.completions.create(
+            model="llama3-70b-8192", # أو الموديل اللي بتستخدمه
+            messages=[
+                {"role": "system", "content": "You are a tech and entertainment journalist."},
+                {"role": "user", "content": prompt} # البرومبت اللي فوق
+            ],
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        print(f"Error generating content: {e}")
+        return f"<h1>{title}</h1><p>Check out our latest post on the blog!</p>"
     # برومبت احترافي يركز على الـ SEO والزرار
-    prompt = f"""Write a VIRAL 900-word SEO article for a US audience.
-    Topic: High-impact analysis of {kw[0]} and {kw[1]} in 2026.
-    
-    Instructions:
-    1. Viral H1 Title with hashtag.
-    2. Add a 150-character SEO Meta Description at the very beginning.
-    3. Use 5+ sections with H2 tags.
-    4. Create an HTML data table for Gold, Silver, and Currency rates.
+   prompt = f"""
+      You are an expert Content Creator in Tech and Entertainment. 
+        Write a viral, SEO-optimized blog post in HTML format about this topic: "{title}".
+
+   STRICT INSTRUCTIONS:
+    1. Viral H1 Title: Create a catchy title including a trending hashtag (e.g., #Tech, #Streaming, #Gaming).
+    2. Meta Description: Start with a 150-character SEO Meta Description at the very beginning.
+    3. Content Structure: Use at least 5+ sections with <h2> tags (e.g., Overview, Top Features, Why it's Viral, How to Access, Final Verdict).
+    4. HTML Data Table: Create a professional HTML table showing current market rates for Gold, Silver, and Currency (USD/EUR) as a 'Daily Tech-Finance' bonus section.
     5. PROMOTION: Include this EXACT HTML button: 
-       <div style='text-align: center; margin: 20px;'><a href='{app['url']}' style='background-color: #28a745; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Get the {app['name']} Now</a></div>
-    6. Footer: Add a bold warning about downloading the blog's mobile app.
-    7. Formatting: Strictly use clean HTML."""
+      <div style='text-align: center; margin: 20px;'><a href='https://familytvr.blogspot.com/' style='background-color: #28a745; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Get the Family TV App Now</a></div>
+    6. Footer: Add a bold <footer> with a warning: "⚠️ **Warning: Ensure you download our official mobile app only from our blog to avoid fake versions!**"
+    7. Formatting: Use strictly clean HTML tags (p, h2, ul, li, table).
+
+  Target Audience: USA & Europe. 
+  Tone: Energetic, Professional, and Tech-savvy.
+"""
 
     data = {
         "model": "llama-3.3-70b-versatile",
