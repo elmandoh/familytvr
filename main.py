@@ -35,17 +35,13 @@ def generate_tech_content(title):
         return f"<h1>{title}</h1><p>Check out our latest post on the blog!</p>"
     # برومبت احترافي يركز على الـ SEO والزرار
    prompt = 
-    f"""
-      You are an expert Content Creator in Tech and Entertainment. 
-        Write a viral, SEO-optimized blog post in HTML format about this topic: "{title}".
-
+    f""" You are an expert Content Creator in Tech and Entertainment. Write a viral, SEO-optimized blog post in HTML format about this topic: "{title}".
    STRICT INSTRUCTIONS:
     1. Viral H1 Title: Create a catchy title including a trending hashtag (e.g., #Tech, #Streaming, #Gaming).
     2. Meta Description: Start with a 150-character SEO Meta Description at the very beginning.
     3. Content Structure: Use at least 5+ sections with <h2> tags (e.g., Overview, Top Features, Why it's Viral, How to Access, Final Verdict).
     4. HTML Data Table: Create a professional HTML table showing current market rates for Gold, Silver, and Currency (USD/EUR) as a 'Daily Tech-Finance' bonus section.
-    5. PROMOTION: Include this EXACT HTML button: 
-      <div style='text-align: center; margin: 20px;'><a href='https://familytvr.blogspot.com/' style='background-color: #28a745; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Get the Family TV App Now</a></div>
+    5. PROMOTION: Include this EXACT HTML button: <div style='text-align: center; margin: 20px;'><a href='https://familytvr.blogspot.com/' style='background-color: #28a745; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Get the Family TV App Now</a></div>
     6. Footer: Add a bold <footer> with a warning: "⚠️ **Warning: Ensure you download our official mobile app only from our blog to avoid fake versions!**"
     7. Formatting: Use strictly clean HTML tags (p, h2, ul, li, table).
 
