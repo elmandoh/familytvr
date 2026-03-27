@@ -28,7 +28,7 @@ def generate_pro_article():
     }
 
     # تم إصلاح المسافات (Indentation) هنا لضمان عمل الكود
-    prompt = f"""Write a viral, SEO-optimized blog post in HTML about: "{title}".
+    prompt = f"""Write a viral STORY Free Fire Lore: Bermuda Secrets comprehensive, deep narrative (at least 1500 words) with multiple characters, plot twists, and historical context of Bermuda. Focus on suspense and action, SEO-optimized blog post in HTML about: "{title}".
     STRICT INSTRUCTIONS:
     1. Viral H1 Title with #Tech #Entertainment.
     2. 150-char SEO Meta Description at the beginning.
