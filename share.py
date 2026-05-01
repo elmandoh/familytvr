@@ -9,7 +9,7 @@ BSKY_ACCOUNTS = [
     {"handle": os.getenv("BSKY_HANDLE_1"), "password": os.getenv("BSKY_PASSWORD_1")},
     {"handle": os.getenv("BSKY_HANDLE_2"), "password": os.getenv("BSKY_PASSWORD_2")}
 ]
-BLOG_RSS_URL = "https://www.dailymotion.com/rss/user/WorldNewsn/1"
+BLOG_RSS_URL = "https://familytvr.blogspot.com/feeds/posts/default?alt=rss"
 CACHE_FILE = "last_post.txt"
 
 def get_latest_post():
