@@ -40,7 +40,7 @@ def send_to_blogger(content):
     # إنشاء الرسالة بتنسيق Multipart لضمان ظهور الـ HTML
     msg = MIMEMultipart()
     msg['Subject'] = clean_subject
-    msg['From'] = formataddr(("Eslam Automation", sender_email))
+    msg['From'] = formataddr(("eslammosde@gmail.com", sender_email))
     msg['To'] = blogger_email
 
     # إرفاق المحتوى كـ HTML
