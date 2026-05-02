@@ -103,14 +103,14 @@ def send_to_blogger(content):
     msg['To'] = "eslammosde.tech5@blogger.com" # إيميل بلوجر الصحيح الخاص بك
     msg.set_content(content, subtype='html')
 
-    try:
-        # استخدام نظام إغلاق الاتصال الآمن لمنع توقف النشر
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(os.getenv("SENDER_EMAIL"), os.getenv("SENDER_PASSWORD"))
-            smtp.send_message(msg)
-            smtp.quit() 
-        logging.info(f"✅ Successfully published: {subject}")
-        print(f"✅ Published: {subject}")
+try:
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(os.getenv("SENDER_EMAIL"), os.getenv("SENDER_PASSWORD"))
+        smtp.send_message(msg)
+    print("✅ SUCCESS: Email Sent to Blogger!") # هذه الرسالة يجب أن تراها في الـ Logs
+except Exception as e:
+    print(f"❌ SMTP ERROR: {e}") # إذا فشل الإرسال سيطبع السبب هنا
+    raise e # هذا سيجعل الـ Action يظهر علامة خطأ حمراء إذا فشل
     except Exception as e:
         logging.error(f"❌ Email Error: {e}")
         print(f"❌ Email Error: {e}")
